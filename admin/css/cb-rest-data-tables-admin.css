@@ -1,0 +1,22 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.table{
+  width:900px;
+  display: block;
+  margin: 0 auto;
+}
+.cell{
+  margin:5px;
+  padding: 5px;
+  background: #f9f9f9;
+  display:block;
+  float: left;
+  width:150px;
+}
+.edit-link{
+  float:right;
+  
+}
