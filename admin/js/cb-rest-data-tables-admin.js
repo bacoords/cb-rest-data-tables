@@ -53,14 +53,21 @@ var app = new Vue({
     },
      editHeader : function(t, i) {
        var a = prompt('Update Header:', this.tables[t].headers[i].name);
-       this.$set(this.tables[t].headers[i], 'name', a);
-       return;
+       if (a === null) {
+         return;
+       } else {
+         this.$set(this.tables[t].headers[i], 'name', a);
+         return;
+       }
      },
     editCell : function(t, r, h) {
       var a = prompt('Update Cell:', this.tables[t].rows[r][h]);
-      this.$set(this.tables[t].rows[r], h, a);
-      // this.rows[r][this.headers[h].name] = a;
-      return;
+      if (a === null) {
+        return;
+      } else {
+        this.$set(this.tables[t].rows[r], h, a);
+        return;
+      }
     },
     returnString : function() {
       return JSON.stringify(this.tables);
