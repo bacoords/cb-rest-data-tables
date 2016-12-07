@@ -154,20 +154,36 @@ class Cb_Rest_Data_Tables {
 		$plugin_admin = new Cb_Rest_Data_Tables_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+    
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
     
-    // Add menu item
-    $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-    
-    // Add Settings link to the plugin
-    $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
-    $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
-    
-    
-    //Add to rest Api
-        
-    $this->loader->add_action( 'rest_api_init', $plugin_admin, 'add_rest_action' );
+//    // Add menu item
+//    $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+//    
+//    // Add Settings link to the plugin
+//    $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
+//    $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
 
+    
+    // Register Custom Post type
+    $this->loader->add_action( 'init', $plugin_admin, 'register_tables_post_type' );
+    
+    // Deregister Autosave on Custom Post Type
+    $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'remove_autosave_script' );
+    
+    // Set default meta value
+    $this->loader->add_action( 'wp_insert_post', $plugin_admin, 'set_default_meta_new_post');
+    
+    // Add Meta Box
+    $this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_tables_meta_box' );
+    
+    // Save Meta Box
+    $this->loader->add_action( 'pre_post_update', $plugin_admin, 'save_tables_meta_box' );
+    
+    // Save Meta Box
+    $this->loader->add_action( 'rest_api_init',  $plugin_admin, 'register_meta_api');
+    
+    
 	}
 
 	/**
@@ -183,7 +199,6 @@ class Cb_Rest_Data_Tables {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**

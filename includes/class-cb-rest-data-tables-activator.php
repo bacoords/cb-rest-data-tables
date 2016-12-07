@@ -31,7 +31,6 @@ class Cb_Rest_Data_Tables_Activator {
 	 */
 	public static function activate() {
     
-    add_option('cb-rest-tables', '[{"name":"Table This","headers":[{"name":"title"},{"name":"content"},{"name":"meta_key"}],"rows":[{"0":"test","1":"sample"},{"0":"this","2":"sample"}]},{"name":"Table That","headers":[{"name":"title"},{"name":"content"},{"name":"meta_key"}],"rows":[{"0":"test","2":"sample"},{"1":"this","2":"sample"}]}]');
 
 	}
 

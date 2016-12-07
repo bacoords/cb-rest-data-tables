@@ -31,43 +31,90 @@
 
 })( jQuery );
 
+
 var app = new Vue({
   el: '#app',
   data: {
-    tables : JSON.parse(cb_rest_tables.tables)
-
+    tables : JSON.parse(cb_rest_tables.tables),
+    showModal: false,
+    editingHeader : {
+      a : false,
+      n : '',
+      i : 0
+    },
+    editingCell : {
+      a : false,
+      n : '',
+      r : 0,
+      h : 0
+    }
   },
   methods: {
-    addColumn : function(t) {
+    addColumn : function() {
       var a = prompt('Column Title:');
-      this.tables[t].headers.push({name: a});
+      this.tables[0].headers.push({name: a});
       return;
     },
-    addRow : function(t) {
+    addRow : function() {
       var a = {};
-      // this.headers.forEach(function(e, i){
-      //   a[e.name] = prompt(e.name);
-      // });
-      this.tables[t].rows.push(a);
+      this.tables[0].rows.push(a);
       return;
     },
-     editHeader : function(t, i) {
-       var a = prompt('Update Header:', this.tables[t].headers[i].name);
-       if (a === null) {
-         return;
-       } else {
-         this.$set(this.tables[t].headers[i], 'name', a);
-         return;
-       }
-     },
-    editCell : function(t, r, h) {
-      var a = prompt('Update Cell:', this.tables[t].rows[r][h]);
-      if (a === null) {
-        return;
-      } else {
-        this.$set(this.tables[t].rows[r], h, a);
-        return;
+    editHeader : function(t, i) {
+      this.editingHeader = {
+        a : true, 
+        n : this.tables[0].headers[i].name,
+        i : i
+      };
+      var self = this;
+      document.getElementById('modal-header-input').onkeypress = function(e){
+        if (!e) e = window.event;
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == '13'){
+          e.preventDefault();
+          self.updateHeader(self.editingHeader.i, self.editingHeader.n);
+          return false;
+        }
       }
+    },
+    updateHeader : function(i, n){
+      this.$set(this.tables[0].headers[i], 'name', n);
+      this.closeModals();
+    },
+    editCell : function(r, h) {
+      this.editingCell = {
+        a : true, 
+        n : this.tables[0].rows[r][h],
+        r : r,
+        h : h,
+      };
+      var self = this;
+      document.getElementById('modal-cell-input').onkeypress = function(e){
+        if (!e) e = window.event;
+        var keyCode = e.keyCode || e.which;
+        if (keyCode == '13'){
+          e.preventDefault();
+          self.updateCell(self.editingCell.r, self.editingCell.h, self.editingCell.n );
+          return false;
+        }
+      }
+    },
+    updateCell : function(r, h, n){
+      this.$set(this.tables[0].rows[r], h, n);
+      this.closeModals();
+    },
+    closeModals : function(){
+      this.editingHeader = {
+        a : false,
+        n : '',
+        i : 0
+      };
+      this.editingCell = {
+        a : false,
+        n : '',
+        r : 0,
+        h : 0
+      };
     },
     returnString : function() {
       return JSON.stringify(this.tables);

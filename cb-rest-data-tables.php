@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       CB REST API Data Tables
  * Plugin URI:        http://briancoords.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Create little tables to output data into the WP REST API
  * Version:           1.0.0
  * Author:            Brian Coords
  * Author URI:        http://briancoords.com
