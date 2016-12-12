@@ -248,7 +248,7 @@ class Cb_Rest_Data_Tables_Admin {
     
     $current_field_value = get_post_meta($post_ID, '_cb_rest_table', true); //change YOUMETAKEY to a default 
     
-    $default_meta = '[{"headers":[{"name":"Sample Header"}],"rows":[{"0":"sample content"}]}]'; 
+    $default_meta = '[{"headers":[{"name":"Sample Header"}],"rows":[{"Sample Header":"sample content"}]}]'; 
 
     if ($current_field_value == '' && !wp_is_post_revision($post_ID)){
         add_post_meta($post_ID,'_cb_rest_table',$default_meta,true);
@@ -315,26 +315,26 @@ class Cb_Rest_Data_Tables_Admin {
   /**
    * Get Alternate Meta for REST API
    */
-  public function register_meta_alt_helper( $object, $field_name, $request ) {
-  
-    $meta = get_post_meta( $object[ 'id' ], '_cb_rest_table' );
-    
-    $return = [];
-    
-    foreach($meta[0]['rows'] as $row){
-      
-      foreach($meta[0]['headers'] as $header){
-        
-        //$return[];
-        
-      }
-      
-    }
-    
-    
-    return json_decode( $return );
-    
-  } 
+//  public function register_meta_alt_helper( $object, $field_name, $request ) {
+//  
+//    $meta = get_post_meta( $object[ 'id' ], '_cb_rest_table' );
+//    
+//    $return = [];
+//    
+//    foreach($meta[0]['rows'] as $row){
+//      
+//      foreach($meta[0]['headers'] as $header){
+//        
+//        //$return[];
+//        
+//      }
+//      
+//    }
+//    
+//    
+//    return json_decode( $return );
+//    
+//  } 
   
   
   /**
@@ -351,14 +351,14 @@ class Cb_Rest_Data_Tables_Admin {
       )
     ); 
 
-    register_api_field( 'rest_table',
-      '_cb_rest_table_alt',
-      array(
-         'get_callback'    => array( $this, 'register_meta_alt_helper'),
-         'update_callback' => null,
-         'schema'          => null,
-      )
-    ); 
+//    register_api_field( 'rest_table',
+//      '_cb_rest_table_alt',
+//      array(
+//         'get_callback'    => array( $this, 'register_meta_alt_helper'),
+//         'update_callback' => null,
+//         'schema'          => null,
+//      )
+//    ); 
     
   } 
 
