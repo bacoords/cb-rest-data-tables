@@ -32,12 +32,6 @@
   float:right;
   cursor: pointer;
   padding: 3px 5px;
-  opacity: 0.5;
-  transition: all 300ms ease;
-}
-
-.cb-rest-tables .edit-link:hover{
-  opacity: 1;
 }
 
 .cb-rest-tables table{

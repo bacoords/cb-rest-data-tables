@@ -169,30 +169,30 @@ class Cb_Rest_Data_Tables_Admin {
    */
   public function register_tables_post_type() {
     $labels = array(
-        'name'                  => _x( 'Tables', 'Post type general name', 'textdomain' ),
-        'singular_name'         => _x( 'Table', 'Post type singular name', 'textdomain' ),
-        'menu_name'             => _x( 'Tables', 'Admin Menu text', 'textdomain' ),
-        'name_admin_bar'        => _x( 'Table', 'Add New on Toolbar', 'textdomain' ),
+        'name'                  => _x( 'API Tables', 'Post type general name', 'textdomain' ),
+        'singular_name'         => _x( 'API Table', 'Post type singular name', 'textdomain' ),
+        'menu_name'             => _x( 'API Tables', 'Admin Menu text', 'textdomain' ),
+        'name_admin_bar'        => _x( 'API Table', 'Add New on Toolbar', 'textdomain' ),
         'add_new'               => __( 'Add New', 'textdomain' ),
-        'add_new_item'          => __( 'Add New Table', 'textdomain' ),
-        'new_item'              => __( 'New Table', 'textdomain' ),
-        'edit_item'             => __( 'Edit Table', 'textdomain' ),
-        'view_item'             => __( 'View Table', 'textdomain' ),
-        'all_items'             => __( 'All Tables', 'textdomain' ),
-        'search_items'          => __( 'Search Tables', 'textdomain' ),
-        'parent_item_colon'     => __( 'Parent Tables:', 'textdomain' ),
-        'not_found'             => __( 'No Tables found.', 'textdomain' ),
-        'not_found_in_trash'    => __( 'No Tables found in Trash.', 'textdomain' ),
-        'featured_image'        => _x( 'Table Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'textdomain' ),
+        'add_new_item'          => __( 'Add New API Table', 'textdomain' ),
+        'new_item'              => __( 'New API Table', 'textdomain' ),
+        'edit_item'             => __( 'Edit API Table', 'textdomain' ),
+        'view_item'             => __( 'View API Table', 'textdomain' ),
+        'all_items'             => __( 'All API Tables', 'textdomain' ),
+        'search_items'          => __( 'Search API Tables', 'textdomain' ),
+        'parent_item_colon'     => __( 'Parent API Tables:', 'textdomain' ),
+        'not_found'             => __( 'No API Tables found.', 'textdomain' ),
+        'not_found_in_trash'    => __( 'No API Tables found in Trash.', 'textdomain' ),
+        'featured_image'        => _x( 'API Table Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'textdomain' ),
         'set_featured_image'    => _x( 'Set cover image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
         'remove_featured_image' => _x( 'Remove cover image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
         'use_featured_image'    => _x( 'Use as cover image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'textdomain' ),
-        'archives'              => _x( 'Table archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'textdomain' ),
-        'insert_into_item'      => _x( 'Insert into Table', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'textdomain' ),
-        'uploaded_to_this_item' => _x( 'Uploaded to this Table', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'textdomain' ),
-        'filter_items_list'     => _x( 'Filter Tables list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'textdomain' ),
-        'items_list_navigation' => _x( 'Tables list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'textdomain' ),
-        'items_list'            => _x( 'Tables list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'textdomain' ),
+        'archives'              => _x( 'API Table archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'textdomain' ),
+        'insert_into_item'      => _x( 'Insert into API Table', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'textdomain' ),
+        'uploaded_to_this_item' => _x( 'Uploaded to this API Table', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'textdomain' ),
+        'filter_items_list'     => _x( 'Filter API Tables list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'textdomain' ),
+        'items_list_navigation' => _x( 'API Tables list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'textdomain' ),
+        'items_list'            => _x( 'API Tables list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'textdomain' ),
     );
  
     $args = array(
@@ -218,6 +218,7 @@ class Cb_Rest_Data_Tables_Admin {
         'menu_position'      => null,
         'show_in_rest'       => true,
         'rest_base'          => 'tables',
+        'menu_icon'          => 'dashicons-editor-table',
         'supports'           => array( 'title' ),
     );
  
@@ -312,53 +313,20 @@ class Cb_Rest_Data_Tables_Admin {
   } 
   
   
-  /**
-   * Get Alternate Meta for REST API
-   */
-//  public function register_meta_alt_helper( $object, $field_name, $request ) {
-//  
-//    $meta = get_post_meta( $object[ 'id' ], '_cb_rest_table' );
-//    
-//    $return = [];
-//    
-//    foreach($meta[0]['rows'] as $row){
-//      
-//      foreach($meta[0]['headers'] as $header){
-//        
-//        //$return[];
-//        
-//      }
-//      
-//    }
-//    
-//    
-//    return json_decode( $return );
-//    
-//  } 
-  
   
   /**
    * Get Meta for REST API
    */
   public function register_meta_api() {
 
-    register_api_field( 'rest_table',
+    register_rest_field( 'rest_table',
       '_cb_rest_table',
       array(
          'get_callback'    => array( $this, 'register_meta_helper'),
          'update_callback' => null,
          'schema'          => null,
       )
-    ); 
-
-//    register_api_field( 'rest_table',
-//      '_cb_rest_table_alt',
-//      array(
-//         'get_callback'    => array( $this, 'register_meta_alt_helper'),
-//         'update_callback' => null,
-//         'schema'          => null,
-//      )
-//    ); 
+    );  
     
   } 
 
